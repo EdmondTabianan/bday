@@ -15,6 +15,7 @@
     height: 100vh;
     background: #000;
     font-family: 'Poppins', sans-serif;
+    position: relative;
   }
 
   .video-container {
@@ -88,6 +89,30 @@
     box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5);
   }
 
+  /* Centered button after video ends */
+  #next-btn {
+    display: none; /* hidden initially */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 40px;
+    background-color: #ff69b4;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+    z-index: 999;
+    transition: all 0.3s ease;
+  }
+
+  #next-btn:hover {
+    background-color: #ff1493;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
 </style>
 </head>
 <body>
@@ -97,21 +122,45 @@
 </div>
 
 <a href="page2.html" class="home-btn">Back to Home</a>
+<a href="page4.html" id="next-btn">Click Here to Continue</a>
 
+<!-- Load YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
+  let player;
   const container = document.getElementById('videoContainer');
   const playBtn = container.querySelector('.play-btn');
+  const nextBtn = document.getElementById('next-btn');
 
   playBtn.addEventListener('click', () => {
-    // Inject iframe with hidden controls, autoplay, no YouTube branding, no title, no copy link
-    const iframe = document.createElement('iframe');
-    iframe.src = "https://www.youtube.com/embed/4TQSztUu0CU?autoplay=1&controls=0&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&disablekb=1";
-    iframe.allow = "autoplay; encrypted-media";
-    iframe.allowFullscreen = true;
-    container.appendChild(iframe);
+    // Replace play button with YouTube player
+    container.innerHTML = '<div id="yt-player"></div>';
+    player = new YT.Player('yt-player', {
+      videoId: '4TQSztUu0CU', // your video ID
+      playerVars: {
+        autoplay: 1,
+        controls: 0,
+        rel: 0,
+        modestbranding: 1,
+        showinfo: 0,
+        iv_load_policy: 3,
+        disablekb: 1
+      },
+      events: {
+        'onReady': event => event.target.playVideo(),
+        'onStateChange': onPlayerStateChange
+      }
+    });
 
     container.classList.add('playing');
   });
+
+  function onPlayerStateChange(event) {
+    if(event.data === YT.PlayerState.ENDED){
+      // Show button when video ends
+      nextBtn.style.display = 'block';
+    }
+  }
 </script>
 
 </body>

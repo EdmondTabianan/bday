@@ -1,165 +1,319 @@
-/* Reset */
+/* style/page2.css */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select: none;
 }
 
-/* Body & background */
 body {
+    background: linear-gradient(135deg, #ffe0f7 0%, #ffd1eb 50%, #ffc2e0 100%);
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ffe0f7, #ffd6e0, #fbe8ff);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
     position: relative;
+    overflow-x: hidden;
+    padding: 20px;
 }
 
-/* Greeting card */
+/* Floating Flowers Animation */
+.flower {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    animation: float 8s ease-in-out infinite;
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.flower1 {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.flower2 {
+    top: 15%;
+    right: 8%;
+    animation-delay: 1.5s;
+}
+
+.flower3 {
+    bottom: 12%;
+    left: 15%;
+    animation-delay: 3s;
+}
+
+.flower4 {
+    top: 5%;
+    right: 12%;
+    animation-delay: 4.5s;
+}
+
+.flower5 {
+    bottom: 8%;
+    right: 20%;
+    animation-delay: 6s;
+}
+
+.flower6 {
+    top: 25%;
+    left: 8%;
+    animation-delay: 7.5s;
+}
+
+.flower7 {
+    bottom: 20%;
+    right: 5%;
+    animation-delay: 9s;
+}
+
+.flower8 {
+    top: 18%;
+    left: 20%;
+    animation-delay: 10.5s;
+}
+
+.flower9 {
+    bottom: 5%;
+    left: 10%;
+    animation-delay: 12s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(-5deg);
+    }
+    75% {
+        transform: translateY(-15px) rotate(3deg);
+    }
+}
+
+/* Main Content Styling */
 main {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    max-width: 700px;
-    padding: 30px 40px;
-    z-index: 10;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Card box */
-.greet {
-    background-color: #fff0f6;
-    border: 3px solid #ffb6c1;
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
     border-radius: 25px;
-    padding: 50px 60px;
-    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.5);
-    animation: fadeIn 1.5s ease-out;
-    position: relative;
-    z-index: 10;
-    max-height: 80vh;       /* prevent card from being taller than viewport */
-    overflow-y: auto;       /* scroll if content exceeds */
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 105, 180, 0.2);
 }
 
-/* Scrollbar styling */
-.greet::-webkit-scrollbar {
-    width: 8px;
-}
-
-.greet::-webkit-scrollbar-thumb {
-    background: #ffb6c1;
-    border-radius: 10px;
-}
-
-/* Headings inside card */
 .greet h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: 2.5rem;
     color: #ff69b4;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    background: linear-gradient(45deg, #ff69b4, #ff85c1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.greet p {
+    color: #6d3d57;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    line-height: 1.8;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.3);
-    animation: float 3s ease-in-out infinite;
+    text-align: left;
+    padding: 0 10px;
 }
 
 .greet h4 {
-    margin-top: 20px;
     color: #ff69b4;
-    font-family: 'Pacifico', cursive;
+    font-size: 1.5rem;
+    margin-top: 30px;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Paragraphs inside card */
-.greet p {
-    color: #6d3d57;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    background-color: rgba(255, 240, 246, 0.8); /* soft pink background */
-    border-radius: 15px;
-    padding: 15px 25px;
-    margin: 15px 0;
-    box-shadow: 0 5px 15px rgba(255, 192, 203, 0.2);
-    transition: all 0.3s ease;
-}
-
-.greet p:hover {
-    background-color: rgba(255, 230, 245, 0.9);
-    transform: scale(1.02);
-}
-
-/* Links below the card */
+/* Navigation Links */
 main a {
     display: inline-block;
-    margin: 15px 10px 0 10px;
-    padding: 10px 25px;
-    background-color: #ffb6c1;
-    color: #fff;
+    margin: 20px 15px 0;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, #ff69b4, #ff85c1);
+    color: white;
     text-decoration: none;
-    border-radius: 20px;
-    font-weight: 600;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+    border: 2px solid transparent;
 }
 
 main a:hover {
-    background-color: #ff69b4;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+    background: linear-gradient(45deg, #ff85c1, #ff69b4);
 }
 
-/* Optional: make links stick to bottom of card if desired */
-.greet + a {
-    margin-top: 20px;
+main a:active {
+    transform: translateY(-1px);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .greet {
-        padding: 30px 25px;
-    }
-
-    .greet h1 {
-        font-size: 2rem;
-    }
-
-    .greet p {
-        font-size: 1rem;
-    }
-
-    main a {
-        padding: 8px 20px;
-        font-size: 0.95rem;
-    }
-}
-
-/* Flower styling */
-.flower {
+/* Heart Animation */
+.greet::before {
+    content: '❤';
     position: absolute;
-    object-fit: cover;
-    border-radius: 50%;
-    opacity: 0.85;
-    mix-blend-mode: multiply;
-    animation: floatFlower 6s ease-in-out infinite;
-    z-index: 1;
-    width: 80px;   /* default size, overwritten by JS */
-    height: 80px;  /* default size, overwritten by JS */
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: #ff69b4;
+    animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-/* Flower animations */
-@keyframes floatFlower {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(4deg); }
+@keyframes heartbeat {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+    }
+    25% {
+        transform: translateX(-50%) scale(1.1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1);
+    }
+    75% {
+        transform: translateX(-50%) scale(1.1);
+    }
 }
 
-/* Text floating animation */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    main {
+        padding: 30px 20px;
+    }
+    
+    .flower {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .greet p {
+        text-align: center;
+        padding: 0 5px;
+    }
+    
+    main a {
+        padding: 12px 25px;
+        font-size: 1rem;
+        margin: 15px 10px 0;
+    }
 }
 
-/* Fade-in animation for card */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    main {
+        padding: 25px 15px;
+    }
+    
+    .flower {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .greet h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .greet p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+    
+    main a {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        margin: 10px 8px 0;
+        display: block;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+    
+    main {
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    .greet p {
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffe0f7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff69b4;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff85c1;
+}
+
+/* Selection Color */
+::selection {
+    background: #ff69b4;
+    color: white;
+}
+
+/* Focus Styles for Accessibility */
+a:focus {
+    outline: 3px solid #ff69b4;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .flower {
+        display: none;
+    }
+    
+    main {
+        box-shadow: none;
+        background: white;
+    }
+    
+    main a {
+        display: none;
+    }
 }
